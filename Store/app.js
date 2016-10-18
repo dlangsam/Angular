@@ -5,5 +5,6 @@
     this.product = gem; 
   });
   var gem = { name: 'Azurite', price: 2.95,
-  description: "Beautiful cut and color", canPurchase: true };
+  description: "Beautiful cut and color", canPurchase: true,
+  soldOut: true };
 })();
