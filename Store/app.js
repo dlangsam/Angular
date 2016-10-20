@@ -60,6 +60,7 @@
       rarity: 2,
       color: '#000',
       faces: 6,
+      canPurchase: true,
       images: [
         "images/gem1.jpg",
         "images/gem2.jpg",
@@ -95,16 +96,25 @@
   });
 
    app.controller("GalleryController", function(){
-    this.current = 0;
-    this.setCurrent = function(current){
-    	if(current !== null){
-        	this.current = current;
-      	}else{
-          this.current = 0;  
-     	}
-    };
-    this.isSet = function(current){
-    	return this.current === current;
-    };
-});
+    	this.current = 0;
+    	this.setCurrent = function(current){
+    		if(current !== null){
+        		this.current = current;
+      		}else{
+          		this.current = 0;  
+     		}
+    	};
+    	this.isSet = function(current){
+    		return this.current === current;
+    	};
+    });
+    app.controller("ReviewController", function(){
+    	this.review = {};
+    	this.addReview = function(product){
+    		product.reviews.push(this.review);
+    		this.review = {};
+    	}
+
+    });
+
 })();
