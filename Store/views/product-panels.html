@@ -9,22 +9,8 @@
          			<!-- <h4>Description</h4>
           			<blockquote>{{product.description}}</blockquote> -->
         		</div>
-         		<div ng-show = "panel.isSelected(2)">
-          			<h4>Specs</h4>
-          			    <ul class="list-unstyled">
-             			 <li>
-             			   <strong>Shine</strong>
-             			   : {{product.shine}}</li>
-             			 <li>
-             			   <strong>Faces</strong>
-             			   : {{product.faces}}</li>
-             			 <li>
-             			   <strong>Rarity</strong>
-             			   : {{product.rarity}}</li>
-             			 <li>
-             			   <strong>Color</strong>
-             			   : {{product.color}}</li>
-            			</ul>
+         		<div ng-show = "panel.isSelected(2)"  ng-include= "'product-specs.html'">
+          			
         		</div>
         		 <div ng-show = "panel.isSelected(3)">   
         		 <!--  Product Reviews List -->
