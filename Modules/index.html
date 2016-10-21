@@ -3,8 +3,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <body>
 
-<div ng-app="myApp" ng-controller="myCtrl">
+<div ng-app="myApp" ng-controller="myCtrl" ng-init="quantity=1;price=5;names=['Sleepy', 'Doc', 'Bashful']">
 {{ firstName + " " + lastName }}
+<br> 
+Quantity: <input type="number"	ng-model="quantity">
+Costs:    <input type="number" ng-model="price">
+
+Total in dollar: {{ quantity * price }}
+<br>
+ <ul>
+    <li ng-repeat="x in names">
+      {{ x }}
+    </li>
+  </ul>
 </div>
 <script src="myApp.js"></script>
 <script src="myCtrl.js"></script>

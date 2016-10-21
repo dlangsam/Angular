@@ -3,16 +3,15 @@
 <head>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="../main.css">
 
 	<title></title>
 </head>
 <body ng-controller="StoreController as store">
 	<ul class = "list-group">
    		<li class = "list-group-item" ng-repeat="product in store.products | orderBy: '-price'">
-   			<h3> {{product.name}}
-  				<em class = "pull-right"> {{product.price | currency}} </em>
-  			</h3>
+   			<product-title></product-title>
+  			
   		 	<section ng-controller="PanelController as panel">
   		 		<ul class = "nav nav-pills">
   		 				<li ng-class="{active:panel.isSelected(1)}"
@@ -20,13 +19,26 @@
   		 				<li ng-class="{active:panel.isSelected(2)}"><a href ng-click = "panel.selectTab(2)">Specifications</a></li>
   		 				<li ng-class="{active:panel.isSelected(3)}""><a href ng-click = "panel.selectTab(3)">Reviews</a></li>
   		 		</ul>
-  		 		<div ng-show = "panel.isSelected(1)">
-         			<h4>Description</h4>
-          			<blockquote>{{product.description}}</blockquote>
+  		 		<div ng-show = "panel.isSelected(1)" ng-include="'product-description.html'">
+         			<!-- <h4>Description</h4>
+          			<blockquote>{{product.description}}</blockquote> -->
         		</div>
          		<div ng-show = "panel.isSelected(2)">
           			<h4>Specs</h4>
-          			<blockquote>Shine: {{product.shine}} </blockquote>
+          			    <ul class="list-unstyled">
+             			 <li>
+             			   <strong>Shine</strong>
+             			   : {{product.shine}}</li>
+             			 <li>
+             			   <strong>Faces</strong>
+             			   : {{product.faces}}</li>
+             			 <li>
+             			   <strong>Rarity</strong>
+             			   : {{product.rarity}}</li>
+             			 <li>
+             			   <strong>Color</strong>
+             			   : {{product.color}}</li>
+            			</ul>
         		</div>
         		 <div ng-show = "panel.isSelected(3)">   
         		 <!--  Product Reviews List -->
@@ -37,7 +49,7 @@
                 
                   <strong> {{review.stars}} Stars</strong>
                   {{review.body}}
-                  <cite class="clearfix"> - {{review.author}}</cite>
+                  <cite class="clearfix"> - {{review.author}} on {{review.createdOn | date}}</cite>
                 </blockquote>
               </li>
            			 </ul>
@@ -69,23 +81,25 @@
         		</div>
   		
   		 <!-- Image Gallery  -->
+  			<div ng-show = "panel.isSelected(1) || panel.isSelected(2)">
       			<div class="gallery" ng-show="product.images.length > 0" ng-controller="GalleryController as gallery">
-        			<div class="img-wrap">
+        			<div class="img-wrap main-img">
         		  <img ng-src="{{product.images[gallery.current]}}" />
         			</div>
         			<ul class="img-thumbnails clearfix">
-        		  		<li class="small-image pull-left thumbnail" ng-repeat="image in product.images" >
+        		  		<li class="small-image pull-left thumbnail small-image" ng-repeat="image in product.images" >
         		   			 <a href ng-click="gallery.setCurrent($index)"><img ng-src="{{image}}" /></a>
         		  		</li>
         			</ul>
       			</div>
+      		</div>
  			</section>
    			<button ng-show="product.canPurchase" class = "btn btn-primary">Add to cart</button>
    		</li>
    	</ul>
-   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	<script type = "text/javascript" src = "angular.min.js"></script>
-	 <script type = "text/javascript" src = "app.js"></script>
+
+	<script type = "text/javascript" src = "../angular.min.js"></script>
+	 <script type = "text/javascript" src = "../app/app.js"></script>
 	 
 </body>
 </html>
